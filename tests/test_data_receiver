@@ -1,0 +1,64 @@
+import unittest
+from data_receiver import DataReceiver
+
+
+class ReceiverTest(unittest.TestCase):
+    # Test de __init__
+
+    # test de socket address()
+    def test_socket_address(self):
+        receiver1 = DataReceiver()
+        receiver2 = DataReceiver()
+        try:
+            self.assertEqual(receiver1.socket_address, ('192.168.56.1', 9999))
+            self.assertRaises(receiver2.socket_address, ("192.168.89.5.", 9999))
+        except:
+            pass
+
+    # test socket binding()
+    def test_socket_binding(self):
+        receiver1 = DataReceiver()
+        receiver2 = DataReceiver()
+        try:
+            self.assertEqual(receiver1.socket_binding(), ("198.49.21.146", 9999))
+            self.assertEqual(receiver2.socket_binding(), ("0.0.0.0", 9999))
+            self.assertRaises(receiver2.socket_binding(), ("192.168.89.5", 9999))
+        except:
+            pass
+
+    # test socket listening()
+    def test_socket_listening(self):
+        receiver1 = DataReceiver()
+        receiver2 = DataReceiver()
+        try:
+            self.assertEqual(receiver1.socket_listening(), ("198.49.21.146", 9999))
+            self.assertEqual(receiver2.socket_listening(), ("0.0.0.0", 9999))
+            self.assertRaises(receiver2.socket_listening(), ("192.168.89.5", 9999))
+        except:
+            pass
+
+    # test socket connected
+    def test_socket_connected(self):
+        receiver1 = DataReceiver()
+        receiver2 = DataReceiver()
+        try:
+            self.assertEqual(receiver1.socket_connected(), ("198.49.21.146", 9999))
+            self.assertEqual(receiver2.socket_connected(), ("0.0.0.0", 9999))
+            self.assertRaises(receiver2.socket_connected(), ("192.168.89.5", 9999))
+        except:
+            pass
+
+    # test stop receiving
+    def test_stop_receiving(self):
+        receiver1 = DataReceiver()
+        receiver2 = DataReceiver()
+        try:
+            self.assertEqual(receiver1.stop_receiving(), ("198.49.21.146", 9999))
+            self.assertEqual(receiver2.stop_receiving(), ("0.0.0.0", 9999))
+            self.assertRaises(receiver2.stop_receiving(), ("192.168.89.5", 9999))
+        except:
+            pass
+
+
+if __name__ == '__main__':
+    unittest.main()
